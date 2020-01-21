@@ -174,9 +174,13 @@ public actual class Regex internal constructor(internal val nativePattern: Patte
 
     /**
      * Returns a sequence of all occurrences of a regular expression within the [input] string, beginning at the specified [startIndex].
+     *
+     * @throws IndexOutOfBoundsException if [startIndex] is less than zero or greater than the length of the [input] char sequence.
      */
-    actual fun findAll(input: CharSequence, startIndex: Int): Sequence<MatchResult>
-            = generateSequence({ find(input, startIndex) }, MatchResult::next)
+    actual fun findAll(input: CharSequence, startIndex: Int): Sequence<MatchResult> {
+        AbstractList.checkPositionIndex(startIndex, input.length)
+        return generateSequence({ find(input, startIndex) }, MatchResult::next)
+    }
 
     /**
      * Attempts to match the entire [input] CharSequence against the pattern.
