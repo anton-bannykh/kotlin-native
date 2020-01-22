@@ -158,7 +158,7 @@ public actual class Regex internal constructor(internal val nativePattern: Patte
      */
     actual fun find(input: CharSequence, startIndex: Int): MatchResult? {
         if (startIndex < 0 || startIndex > input.length) {
-            throw IndexOutOfBoundsException("Start index out of bounds: $startIndex")
+            throw IndexOutOfBoundsException("Start index out of bounds: $startIndex, input length: ${input.length}")
         }
         val matchResult = MatchResultImpl(input, this)
         matchResult.mode = Mode.FIND
@@ -178,7 +178,9 @@ public actual class Regex internal constructor(internal val nativePattern: Patte
      * @throws IndexOutOfBoundsException if [startIndex] is less than zero or greater than the length of the [input] char sequence.
      */
     actual fun findAll(input: CharSequence, startIndex: Int): Sequence<MatchResult> {
-        AbstractList.checkPositionIndex(startIndex, input.length)
+        if (startIndex < 0 || startIndex > input.length) {
+            throw IndexOutOfBoundsException("Start index out of bounds: $startIndex, input length: ${input.length}")
+        }
         return generateSequence({ find(input, startIndex) }, MatchResult::next)
     }
 
