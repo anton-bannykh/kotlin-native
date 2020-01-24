@@ -314,7 +314,7 @@ upper bound will make Objective-C methods/properties non-null.
 
 ### To disable
 
-To have the framework header written without generics, add a flag to the compiler config:
+To have the framework header written without generics, add the flag to the compiler config:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
 
