@@ -229,7 +229,7 @@ foo {
 Objective-C supports "lightweight generics" defined on classes, with a relatively limited feature set. Swift can import 
 generics defined on classes to help provide additional type information to the compiler.
 
-Generic feature support for Obj-C and Swift differ from Kotlin, so the translation will inevitably lose some information,
+Generic feature support for Objective-C and Swift differ from Kotlin, so the translation will inevitably lose some information,
 but the features supported retain meaningful information.
 
 #### Limitations
@@ -237,11 +237,11 @@ but the features supported retain meaningful information.
 Objective-C generics do not support all features of either Kotlin or Swift, so there will be some information lost
 in the translation.
 
-Generics can only be defined on classes, not on interfaces (protocols in Obj-C and Swift) or functions.
+Generics can only be defined on classes, not on interfaces (protocols in Objective-C and Swift) or functions.
 
 #### Nullability
 
-Kotlin and Swift both define nullability as part of the type specification, while Obj-C defines nullability on methods
+Kotlin and Swift both define nullability as part of the type specification, while Objective-C defines nullability on methods
 and properties of a type. As such, the following:
 
 <div class="sample" markdown="1" theme="idea" data-highlight-only>
@@ -266,7 +266,7 @@ class Sample<T>() {
 
 </div>
 
-In order to support a potentially nullable type, the Obj-C header needs to define `myVal` with a nullable return value.
+In order to support a potentially nullable type, the Objective-C header needs to define `myVal` with a nullable return value.
 
 To mitigate this, when defining your generic classes, if the generic type should *never* be null, provide a non-null 
 type constraint:
@@ -281,7 +281,7 @@ class Sample<T : Any>() {
 
 </div>
 
-That will force the Obj-C header to mark `myVal` as non-null.
+That will force the Objective-C header to mark `myVal` as non-null.
 
 #### Variance
 
